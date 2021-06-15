@@ -1,16 +1,18 @@
 pipeline {
     agent {
     docker {
- image 'python:3-alpine' 
+ image 'python:3.7' 
 }
  }
     stages {
         stage('Build') {
             steps {
-            sh ' sudo pip install -r requirements.txt'
+            withEnv(["HOME=${env.WORKSPACE}"]) {
+            sh 'pip install -r requirements.txt'
                 echo 'Building..'
             }
         }
+     }
         stage('Test') {
             steps {
             sh 'python hello.py'
