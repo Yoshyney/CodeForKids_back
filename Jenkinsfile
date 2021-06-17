@@ -10,14 +10,13 @@ pipeline {
            withEnv(["HOME=${env.WORKSPACE}"]) {
           sh   'export PYTHONPATH=/usr/bin/python:$PYTHONPATH'
           sh  'pip install -r requirements.txt'
-                echo 'Building..'
+          sh 'python hello.py'
             }
         }
     } 
      
         stage('Test') {
             steps {
-            sh 'python hello.py'
                 echo 'Testing..'
             }
         }
