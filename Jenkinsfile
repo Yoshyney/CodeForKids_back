@@ -8,9 +8,6 @@ pipeline {
         stage('Build') {
             steps {
             withEnv(["HOME=${env.WORKSPACE}"]) {
-          sh 'pip install virtualenv'
-          sh 'virtualenv venv'
-          sh 'source bin/activate' 
           sh  'pip install -r requirements.txt'
                 echo 'Building..'
             }
