@@ -1,3 +1,7 @@
+import sys
+import os
+sys.path.append(os.environ['WORKSPACE'])
+
 from Flask import Flask
 app = Flask(__name__)
 
