@@ -7,8 +7,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-           virtualenv testenv -p /usr/bin/python3
-           source testenv/bin/activate
+          sh 'virtualenv testenv -p /usr/bin/python3'
+          sh 'source testenv/bin/activate'
             withEnv(["HOME=${env.WORKSPACE}"]) {
           sh  'pip install -r requirements.txt'
                 echo 'Building..'
