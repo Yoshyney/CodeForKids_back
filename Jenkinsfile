@@ -8,6 +8,7 @@ pipeline {
         stage('Build') {
             steps {
            withEnv(["HOME=${env.WORKSPACE}"]) {
+          sh 'echo $path'
           sh   'export PYTHONPATH=$PATH_TO_MODULE:$PYTHONPATH'
           sh  'pip install -r requirements.txt'
                 echo 'Building..'
