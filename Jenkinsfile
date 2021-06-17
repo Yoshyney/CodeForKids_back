@@ -12,7 +12,7 @@ pipeline {
                 echo 'Building..'
             }
         }
-     }
+     
         stage('Test') {
             steps {
             sh 'python hello.py'
