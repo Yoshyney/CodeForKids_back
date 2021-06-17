@@ -8,8 +8,7 @@ pipeline {
         stage('Build') {
             steps {
            withEnv(["HOME=${env.WORKSPACE}"]) {
-          sh 'umask022'
-          sh   'export PYTHONPATH=$PATH_TO_MODULE:$PYTHONPATH'
+          sh   'export PYTHONPATH=/usr/bin/python:$PYTHONPATH'
           sh  'pip install -r requirements.txt'
                 echo 'Building..'
             }
