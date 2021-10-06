@@ -13,7 +13,7 @@ def main(config_path: str = "/config"):
                           path=f"{os.path.dirname(os.path.realpath(__file__))}{config_path}")
     flask_app = Flask_app(log=Logger("Setup"),
                           config=config)
-    flask_app.setup()
+    flask_app.setup().run()
 
 if __name__ == '__main__':
     main()
