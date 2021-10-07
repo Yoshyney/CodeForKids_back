@@ -1,5 +1,5 @@
 
-from flask import Blueprint
+from flask import Blueprint, jsonify
 
 from src.controller.exercice import ExerciceController
 
@@ -10,8 +10,13 @@ def routes(
 
     bp = Blueprint('Exercice', __name__)
 
-    @bp.route('/hello', methods=['GET'])
-    def hello():
-        return "hello world"
+    @bp.route('/exercice/<exercice_id>', methods=['GET'])
+    def get_exercice(exercice_id: int):
+        return jsonify(exercice.handle_event(
+            type="get_exercice",
+            event={
+                "id": exercice_id
+            }
+        ))
 
     return bp

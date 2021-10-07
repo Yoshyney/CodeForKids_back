@@ -1,15 +1,14 @@
 from datetime import time
 
 import flask
-from typing import Any
 
-import sqlalchemy
 import psycopg2
 import psycopg2.sql
 import uuid as uuid
 
 from src.config_loader import ConfigLoader
 from src.flask_app.db_config import FlaskDatabaseConfig
+from src.flask_app.default_data import init_default_data
 from src.flask_app.models import *
 from src.flask_app.modules import Modules
 from flask import Flask, g, request
@@ -85,9 +84,9 @@ class Flask_app:
     def __regenerate_db(self) -> None:
         self.__db.session.execute(f"CREATE SCHEMA IF NOT EXISTS {self.__schema}")
         self.__db.session.commit()
-        # if dev
         self.__db.drop_all()
         self.__db.create_all()
+        init_default_data(self.__log)
         self.__db.session.commit()
 
     def setup(self) -> Any:
