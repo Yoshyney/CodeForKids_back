@@ -10,9 +10,10 @@ import uuid as uuid
 
 from src.config_loader import ConfigLoader
 from src.flask_app.db_config import FlaskDatabaseConfig
+from src.flask_app.models import *
+from src.flask_app.modules import Modules
 from flask import Flask, g, request
 from logbook import Logger
-from flask_sqlalchemy import SQLAlchemy # type: ignore
 
 class Flask_app:
 
@@ -23,7 +24,7 @@ class Flask_app:
         self.__config = config
         self.__schema = "code_for_kids"
         self.__meta = None
-        self.__db = None
+        self.__db = db
         self.__flask_app = None
 
     def __init_flask_app(self) -> None:
@@ -42,8 +43,6 @@ class Flask_app:
 
     def __register_flask_extensions(self) -> None:
         '''create and register flask application extensions'''
-        self.__meta = sqlalchemy.MetaData(schema=self.__schema)
-        self.__db = SQLAlchemy(metadata=self.__meta)
         self.__db.init_app(self.__flask_app)
         self.__log.info("Flask extensions registered.")
 
@@ -94,6 +93,8 @@ class Flask_app:
     def setup(self) -> Any:
         '''Setup the flask application'''
         self.__init_flask_app()
+        ## Load all the modules
+        Modules(Logger("Modules"), self.__flask_app).init_and_load_modules()
         ## init channel / route ....
         with self.__flask_app.app_context():
             self.__regenerate_db()
