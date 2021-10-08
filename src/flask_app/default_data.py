@@ -13,14 +13,14 @@ def init_default_data(log: Logger):
         description="Dans cet exercice, vous allez devoir avancer le cube avec la commande Move jusqu'a la fin !",
         level=
         {
-            "start": {"x": -25, "y": 25, "z": 25},
-            "end": {"x": -75, "y": 25, "z": 25},
+            "start": {"x": -75, "y": 25, "z": 25},
+            "end": {"x": 75, "y": 25, "z": 25},
             "level":
                 [
+                    {"x": -75, "y": 25, "z": 25},
                     {"x": -25, "y": 25, "z": 25},
-                    {"x": 75, "y": 25, "z": 25},
                     {"x": 25, "y": 25, "z": 25},
-                    {"x": -75, "y": 25, "z": 25}
+                    {"x": 75, "y": 25, "z": 25}
                 ]
         }
     )
@@ -31,15 +31,15 @@ def init_default_data(log: Logger):
                     "commande while jusqu'a la fin !",
         level=
         {
-            "start": {"x": -25, "y": 25, "z": 25},
-            "end": {"x": -75, "y": 25, "z": 25},
-            "level" :
-            [
+            "start": {"x": -75, "y": 25, "z": 25},
+            "end": {"x": 75, "y": 25, "z": 25},
+            "level":
+                [
+                    {"x": -75, "y": 25, "z": 25},
                     {"x": -25, "y": 25, "z": 25},
-                    {"x": 75, "y": 25, "z": 25},
                     {"x": 25, "y": 25, "z": 25},
-                    {"x": -75, "y": 25, "z": 25}
-            ]
+                    {"x": 75, "y": 25, "z": 25}
+                ]
         }
     )
 
